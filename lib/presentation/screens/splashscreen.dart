@@ -21,7 +21,7 @@ class SplashScreen extends StatelessWidget {
             if (state is SplashLoadedState) {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => Boardingscreen()),
+                MaterialPageRoute(builder: (context) => OnBoardingScreen()),
               );
             }
           },

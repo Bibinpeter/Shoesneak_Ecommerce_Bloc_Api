@@ -1,38 +1,37 @@
-import 'package:concentric_transition/concentric_transition.dart';
+import 'package:action_slider/action_slider.dart';
+import 'package:concentric_transition/page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shoesneak/presentation/screens/boardingscreens/diversion.dart';
+ 
 
-class Boardingscreen extends StatefulWidget {
-  const Boardingscreen({Key? key}) : super(key: key);
+// ignore: must_be_immutable
+class OnBoardingScreen extends StatelessWidget {
+  OnBoardingScreen({super.key});
 
-  @override
-  State<Boardingscreen> createState() => _BoardingscreenState();
-}
-
-class _BoardingscreenState extends State<Boardingscreen> {
-  List<AssetImage> pages = [
+  final List<AssetImage> pages = [
     const AssetImage("assets/images/pngegg (1).png"),
     const AssetImage("assets/images/pngegg.png"),
-    const AssetImage("assets/images/pngegg (10).png"),
+    const AssetImage("assets/images/Nike-Shoes-Air-Max-PNG-Image.png"),
   ];
 
   List<String> texts = [
     "JUST DO IT...",  
     "FIND YOUR \n   GREATNESS",
-    "MAKE IT MORE\n   PERFECT",
-  ];
-
+    "MAKE IT MORE\n   PERFECT",
+    ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ConcentricPageView(
-        radius: 25,
+        radius: 30, 
         verticalPosition: 0.85,
         colors: const [
-          Color.fromARGB(255, 86, 144, 238),
-          Color.fromARGB(255, 238, 71, 71),
-          Color.fromARGB(255, 23, 206, 30)
+          Color.fromARGB(255, 43, 118, 246),
+          Color.fromARGB(255, 223, 25, 75),
+          Color.fromARGB(255, 13, 216, 131),
         ],
+        itemCount: pages.length,
         itemBuilder: (index) {
           int pageIndex = index % pages.length;
           return Column(
@@ -43,25 +42,39 @@ class _BoardingscreenState extends State<Boardingscreen> {
                 width: 350,
                 height: 350,
               ),
-              const SizedBox(height: 10),
-              Text(
+               Text(
                 texts[pageIndex],
                 style: GoogleFonts.lato(
-                  fontSize: 35,
+                  fontSize: 20,
                   color: Colors.white,
                   letterSpacing: 6,
                 ),
               ),
-            ]
-            ,
-          );
-          
+              if (index ==
+                  pages.length - 1)  
+                Padding(
+                  padding: const EdgeInsets.only(top: 40),
+                  child: ActionSlider.standard(
+                    child: const Text('Slide to join'),
+                    action: (controller) async {
+                      controller.loading(); 
+                      await Future.delayed(const Duration(seconds: 2));
+                      controller.success();
 
+                      Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(
+                          builder: (context) =>VideoApp(),
+                        ),
+                        (route) => false,
+                      );
+                    },
+                    // ... other parameters for ActionSlider
+                  ),
+                ),
+            ],
+          );
         },
-        
-      ),
- 
-    
-    );
-  }
+),
+);
+}
 }
