@@ -55,12 +55,11 @@ class BottomNavBar extends StatelessWidget {
                 }
               },
               iconSize: 30,
-              activeColor: const Color.fromARGB(255, 226, 61, 255),
-              inactiveColor: const Color.fromARGB(255, 144, 115, 224),
+              activeColor: Colors.black,
+             inactiveColor: const Color.fromARGB(255, 144, 115, 224),
               selectedIndex: currentIndex,
               barItems: [
                 BarItem(
-                  
                   icon: Icons.home,
                   title: 'Home',
                 ),
@@ -80,7 +79,7 @@ class BottomNavBar extends StatelessWidget {
             ),
           );
         },
-      ),
-    );
-  }
+  ),
+);
+}
 }

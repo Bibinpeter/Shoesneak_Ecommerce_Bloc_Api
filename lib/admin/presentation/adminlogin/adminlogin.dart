@@ -34,8 +34,9 @@ class _AdminloginState extends State<Adminlogin> {
             );
           } else if (state is LoginBlocSuccess) {
             showTopSnackBar(
-              curve: Curves.bounceInOut,
-              animationDuration: const Duration(seconds: 1),
+              curve: Curves.bounceOut,
+              animationDuration: const Duration(milliseconds: 500),
+              displayDuration: const Duration(milliseconds: 1500),
               snackBarPosition: SnackBarPosition.bottom,
             Overlay.of(context),const CustomSnackBar.success(message:"Login successfully"),
             );
@@ -50,7 +51,7 @@ class _AdminloginState extends State<Adminlogin> {
             showTopSnackBar(
                snackBarPosition: SnackBarPosition.bottom,
               Overlay.of(context),
-              const CustomSnackBar.error(message: "error occured in Login")
+              const CustomSnackBar.error(message: "Error Occured In Login"),
             );
           }
         },
@@ -63,7 +64,7 @@ class _AdminloginState extends State<Adminlogin> {
                   const SizedBox(height: 30),
                   AnimatedCircularIcon(
                     size: 100,
-                    iconData: Icons.admin_panel_settings,
+                    iconData: Icons.admin_panel_settings
                   ),
                   const SizedBox(height: 10),
                   Text(

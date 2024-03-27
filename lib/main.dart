@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart'as http;
 import 'package:shoesneak/admin/bussiness_logic/login_bloc/bloc/login_bloc_bloc.dart';
+import 'package:shoesneak/admin/bussiness_logic/login_bloc/bloc/nav_bar/bloc/navbloc_bloc.dart';
 import 'package:shoesneak/bussiness/auth/bloc/splashbloc_bloc.dart';
 import 'package:shoesneak/presentation/screens/splashscreen.dart';
 
@@ -20,11 +21,12 @@ class MyApp extends StatelessWidget {
     return 
       MultiBlocProvider(
         providers:[
-           BlocProvider(create: (_) => SplashBloc()),
+        BlocProvider(create: (_) => SplashBloc()),
         BlocProvider(create: (_) => LoginBlocBloc(httpClient)),
+        BlocProvider(create: (_) =>NavblocBloc()),
         ],
        
-        child:MaterialApp(
+        child:const MaterialApp(
           debugShowCheckedModeBanner: false,
           home: SplashScreen(),
         ));
