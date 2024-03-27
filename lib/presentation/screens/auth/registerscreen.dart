@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shoesneak/presentation/screens/auth/widgets.dart';
+import 'package:shoesneak/presentation/screens/userhomescreen/user_homescreen.dart';
 
 class Registerscreen extends StatelessWidget {
   const Registerscreen({Key? key}) : super(key: key);
@@ -19,8 +20,10 @@ class Registerscreen extends StatelessWidget {
                   'assets/images/andres-jasso-u4unYsXQHnE-unsplash.jpg',
                   fit: BoxFit.cover,
                 ),
-                AnimatedCircularIcon(),  
-             
+                AnimatedCircularIcon(
+                  size: 60,
+                  iconData: Icons.person_2_outlined,
+                ),
               ],
             ),
           ),
@@ -61,8 +64,11 @@ class Registerscreen extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 10),
                   child: Row(
                     children: [
-                      AnimatedCircularIcon(),
-                      SizedBox(width: 10),
+                      AnimatedCircularIcon(
+                        size: 60,
+                        iconData: Icons.person_2_outlined,
+                      ),
+                      const SizedBox(width: 10),
                       Text(
                         'REGISTER',
                         style: GoogleFonts.lato(
@@ -111,17 +117,16 @@ class Registerscreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),  
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          TextButton(
-                            onPressed: () {
-                            //   Navigator.of(context).push(MaterialPageRoute(builder: (context) => Registerscreen(),));
-                            },
-                            child: Text(
-                              'REGISTER',
-                              style: TextStyle(color: Colors.white),
+                          GestureDetector(
+                            onTap: () => UserHomeScreen(),
+                            child: Image.asset(
+                              "assets/images/login (1).png",
+                              width: 60, 
+                              height: 60, 
                             ),
                           ),
                         ],

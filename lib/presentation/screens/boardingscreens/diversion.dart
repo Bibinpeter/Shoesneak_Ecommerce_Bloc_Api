@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shoesneak/admin/presentation/adminlogin.dart';
 import 'package:shoesneak/presentation/screens/auth/loginscreen.dart';
 import 'package:shoesneak/presentation/screens/auth/widgets.dart';
 import 'package:video_player/video_player.dart';
@@ -99,7 +100,13 @@ class _VideoAppState extends State<VideoApp> {
                   children: [
                     CustomButton(
                       text: 'Admin',
-                      onPressed: () {},
+                      onPressed: () {
+                         Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Adminlogin(),
+                            ));
+                      },
                     ),
                     SizedBox(width: 40),
                     CustomButton(

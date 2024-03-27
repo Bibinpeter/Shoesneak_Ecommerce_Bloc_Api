@@ -166,22 +166,32 @@ class CustomButton extends StatelessWidget {
 }
  
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
- class AnimatedCircularIcon extends StatelessWidget {
+
+class AnimatedCircularIcon extends StatelessWidget {
+  final double size;
+  final IconData iconData;
+
+  AnimatedCircularIcon({required this.size, required this.iconData});
+
   @override
   Widget build(BuildContext context) {
     return Center(
       child: WidgetCircularAnimator(
         child: Container(
           decoration: BoxDecoration(
-              shape: BoxShape.circle, color: Colors.white),
+            shape: BoxShape.circle,
+            color: Colors.white,
+          ),
           child: Icon(
-            Icons.person_outline,
+            iconData,
             color: Color.fromARGB(255, 15, 112, 223),
-            size: 35, 
+            size: size * 0.5, // Adjust the icon size based on the widget size
           ),
         ),
-        size: 60, 
+        size: size,
       ),
     );
   }
 }
+
+

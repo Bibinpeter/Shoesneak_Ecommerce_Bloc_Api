@@ -20,7 +20,7 @@ class LoginScreen extends StatelessWidget {
                   'assets/images/andres-jasso-PqbL_mxmaUE-unsplash.jpg',
                   fit: BoxFit.cover,
                 ),
-                AnimatedCircularIcon(), // Replaced with circular animated icon
+                 AnimatedCircularIcon(size: 60,iconData: Icons.person_2_outlined),  
                 // Add more images here as needed
               ],
             ),
@@ -62,8 +62,8 @@ class LoginScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 10),
                   child: Row(
                     children: [
-                      AnimatedCircularIcon(),
-                      SizedBox(width: 10),
+                      AnimatedCircularIcon(size: 60,iconData: Icons.person_2_outlined,),  
+                      const SizedBox(width: 10),
                       Text(
                         'LOGIN',
                         style: GoogleFonts.lato(
@@ -112,7 +112,7 @@ class LoginScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -120,16 +120,16 @@ class LoginScreen extends StatelessWidget {
                             onPressed: () {
                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Registerscreen(),));
                             },
-                            child: Text(
+                            child: const Text(
                               'REGISTER',
                               style: TextStyle(color: Colors.white),
                             ),
                           ),
                           TextButton(
                             onPressed: () {
-                              // Handle forgot password logic
+                              
                             },
-                            child: Text(
+                            child: const Text(
                               'Forgot Password?',
                               style: TextStyle(color: Colors.white),
                             ),
