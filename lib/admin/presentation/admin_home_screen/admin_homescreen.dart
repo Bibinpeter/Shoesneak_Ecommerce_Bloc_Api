@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shoesneak/admin/utils/functions/functions.dart';
-import 'package:top_snackbar_flutter/custom_snack_bar.dart';
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class AdminHome extends StatelessWidget {
   const AdminHome({super.key});
@@ -16,14 +14,6 @@ class AdminHome extends StatelessWidget {
               IconButton(
                   onPressed: () {
                     adminlogout(context);
-                    showTopSnackBar(
-                      curve: Curves.bounceOut,
-                      animationDuration: const Duration(milliseconds: 800),
-                      displayDuration: const Duration(milliseconds: 1500),
-                      snackBarPosition: SnackBarPosition.bottom,
-                      Overlay.of(context),
-                      const CustomSnackBar.info(message: "LOGOUT successfully"),
-                    );
                   },
                   icon: const Icon(Icons.logout))
             ],
