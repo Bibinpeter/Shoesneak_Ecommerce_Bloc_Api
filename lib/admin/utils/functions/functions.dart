@@ -4,8 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shoesneak/admin/bussiness_logic/admincategory/bloc/categorybloc_bloc.dart';
 import 'package:shoesneak/admin/presentation/adminlogin/adminlogin.dart';
 import 'package:shoesneak/admin/utils/widgets/textformfield.dart';
-import 'package:top_snackbar_flutter/custom_snack_bar.dart';
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 
 /////////////////-------ADMIN LOGOUT-----//////////////////////////////////////
@@ -15,7 +13,6 @@ Future<void> adminlogout(BuildContext context) async {
 
   // Show custom dialog
   showDialog(
-    // ignore: use_build_context_synchronously
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
@@ -35,15 +32,6 @@ Future<void> adminlogout(BuildContext context) async {
                 (route) => false,
                  
               );
-              showTopSnackBar(
-                      curve: Curves.bounceOut,
-                      animationDuration: const Duration(milliseconds: 800),
-                      displayDuration: const Duration(milliseconds: 1500),
-                      snackBarPosition: SnackBarPosition.bottom,
-                      // ignore: use_build_context_synchronously
-                      Overlay.of(context),
-                      const CustomSnackBar.info(message: "LOGOUT successfully"),
-                    );
             },
             child: const Text('CONFIRM'),
           ),
@@ -109,22 +97,43 @@ void showEditDialog(BuildContext context, String categoryName) {
     context: context,
     builder: (BuildContext context) {
       return Dialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
         child: Container(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              const Text(
+                'Edit Category',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 20),
               TextFormFieldWidget(
-                  controller: editController,
-                  hintText: 'Category Name',
-                  errorText: 'Please give a valid name'),
-             const SizedBox(height: 10,),
+                controller: editController,
+                hintText: 'Category Name',
+                errorText: 'Please give a valid name',
+              ),
+              const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ElevatedButton(
                     onPressed: () => Navigator.pop(context),
-                    child: const Text('Cancel'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.grey,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    child: const Text(
+                      'Cancel',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                   ElevatedButton(
                     onPressed: () {
@@ -132,13 +141,23 @@ void showEditDialog(BuildContext context, String categoryName) {
                           editController.text != categoryName) {
                         context.read<CategoryblocBloc>().add(
                               EditCategory(
-                                  name: categoryName,
-                                  newName: editController.text),
+                                name: categoryName,
+                                newName: editController.text,
+                              ),
                             );
                         Navigator.pop(context);
                       }
                     },
-                    child: const Text('Edit'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    child: const Text(
+                      'Edit',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ],
               ),
@@ -149,3 +168,4 @@ void showEditDialog(BuildContext context, String categoryName) {
     },
   );
 }
+
