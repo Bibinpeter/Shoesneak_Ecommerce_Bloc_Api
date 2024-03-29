@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shoesneak/admin/presentation/adminlogin/adminlogin.dart';
 import 'package:shoesneak/presentation/screens/auth/loginscreen.dart';
-import 'package:shoesneak/presentation/screens/auth/widgets.dart';
+import 'package:shoesneak/presentation/widget/widgets.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoApp extends StatefulWidget {
+  const VideoApp({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _VideoAppState createState() => _VideoAppState();
 }
 
@@ -21,6 +24,7 @@ class _VideoAppState extends State<VideoApp> {
   }
 
   void _initializeVideoPlayer() async {
+    // ignore: deprecated_member_use
     _controller = VideoPlayerController.network(
       'https://player.vimeo.com/progressive_redirect/playback/454789471/rendition/720p/file.mp4?loc=external&oauth2_token_id=1747418641&signature=5d6d271835ca447ee8be9b7c719ce76dbd68cf05306f97bb3b04f3a1cabe3fc9',
     );
@@ -47,6 +51,7 @@ class _VideoAppState extends State<VideoApp> {
         backgroundColor: Colors.black,
         body: Stack(
           children: [
+            // ignore: sized_box_for_whitespace
             Container(
               width: double.infinity,
               height: double.infinity,
@@ -55,7 +60,7 @@ class _VideoAppState extends State<VideoApp> {
                       aspectRatio: screenSize.width / screenSize.height,
                       child: VideoPlayer(_controller),
                     )
-                  : CircularProgressIndicator(),
+                  : const CircularProgressIndicator(),
             ),
             Container(
               decoration: BoxDecoration(
@@ -94,7 +99,7 @@ class _VideoAppState extends State<VideoApp> {
                     ],
                   ),
                 ),
-                SizedBox(height: 20,),
+                const SizedBox(height: 20,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -104,24 +109,24 @@ class _VideoAppState extends State<VideoApp> {
                          Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => Adminlogin(),
+                              builder: (context) => const                             Adminlogin(),
                             ));
                       },
                     ),
-                    SizedBox(width: 40),
+                    const SizedBox(width: 40),
                     CustomButton(
                       text: 'User',
                       onPressed: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => LoginScreen(),
+                              builder: (context) => const LoginScreen(),
                             ));
                       },
                     ),
                   ],
                 ),
-                SizedBox(height: 40)
+                const SizedBox(height: 40)
               ],
             ),
           ],

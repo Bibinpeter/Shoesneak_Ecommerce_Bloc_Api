@@ -61,6 +61,7 @@ class OnBoardingScreen extends StatelessWidget {
                       await Future.delayed(const Duration(seconds: 2));
                       controller.success();
 
+                      // ignore: use_build_context_synchronously
                       Navigator.of(context).pushAndRemoveUntil(
                         MaterialPageRoute(
                           builder: (context) =>VideoApp(),

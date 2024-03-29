@@ -7,6 +7,7 @@ class BigNoiseLiquidWidget extends StatefulWidget {
   const BigNoiseLiquidWidget({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _BigNoiseLiquidWidgetState createState() => _BigNoiseLiquidWidgetState();
 }
 
@@ -19,21 +20,21 @@ class _BigNoiseLiquidWidgetState extends State<BigNoiseLiquidWidget> {
         viscosity: 0.9,
         touchForce: 30,
         forceLimit: 15,
-        color: Color.fromARGB(255, 62, 63, 62),
+        color: const Color.fromARGB(255, 62, 63, 62),
       ),
       LayerModel(
         points: [],
         viscosity: 0.9,
         touchForce: 50,
         forceLimit: 10,
-        color: Color.fromARGB(255, 121, 121, 197),
+        color: const Color.fromARGB(255, 121, 121, 197),
       ),
       LayerModel(
         points: [],
         viscosity: 0.9,
         touchForce: 50,
         forceLimit: 10,
-        color: Color.fromARGB(255, 104, 237, 232),
+        color: const Color.fromARGB(255, 104, 237, 232),
       ),
     ],
     gap: 30,
@@ -79,7 +80,7 @@ class _BigNoiseLiquidWidgetState extends State<BigNoiseLiquidWidget> {
             children: [
               Text(
                 label,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w900,
                   color: Color(0xFF00FFD5),
@@ -152,7 +153,7 @@ class CustomButton extends StatelessWidget {
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.white.withOpacity(0.1), // Set your desired button color
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
@@ -171,24 +172,24 @@ class AnimatedCircularIcon extends StatelessWidget {
   final double size;
   final IconData iconData;
 
-  AnimatedCircularIcon({required this.size, required this.iconData});
+  const AnimatedCircularIcon({super.key, required this.size, required this.iconData});
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: WidgetCircularAnimator(
+        size: size,
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             shape: BoxShape.circle,
             color: Colors.white,
           ),
           child: Icon(
             iconData,
-            color: Color.fromARGB(255, 15, 112, 223),
+            color: const Color.fromARGB(255, 15, 112, 223),
             size: size * 0.5, // Adjust the icon size based on the widget size
           ),
         ),
-        size: size,
       ),
     );
   }

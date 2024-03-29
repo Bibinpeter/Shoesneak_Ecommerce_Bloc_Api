@@ -20,7 +20,7 @@ class AddProductingScrn extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: const Color.fromARGB(255, 5, 250, 201).withOpacity(0.5),
-              spreadRadius: 2,
+              spreadRadius: 5,
             ),
           ],
           color:const Color.fromARGB(255, 60, 153, 199)

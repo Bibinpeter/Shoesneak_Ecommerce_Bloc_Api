@@ -3,7 +3,9 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shoesneak/presentation/screens/auth/registerscreen.dart';
-import 'package:shoesneak/presentation/screens/auth/widgets.dart';
+import 'package:shoesneak/presentation/widget/widgets.dart';
+ 
+ 
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);

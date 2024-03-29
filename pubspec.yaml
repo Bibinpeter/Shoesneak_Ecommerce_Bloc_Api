@@ -40,7 +40,6 @@ dependencies:
   animated_splash_screen: ^1.3.0
   concentric_transition: ^1.0.3
   google_fonts: ^6.2.1
-  clay_containers: ^0.3.4
   liquid_container: ^1.0.4
   action_slider: ^0.7.0
   video_player: ^2.2.17
@@ -52,6 +51,8 @@ dependencies:
   google_nav_bar: ^5.0.6
   sliding_clipped_nav_bar: ^3.1.1
   animation_list: ^3.0.0
+  meta: ^1.11.0
+  rounded_loading_button_plus: ^3.0.1
   
 
 dev_dependencies:
