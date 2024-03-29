@@ -5,7 +5,7 @@ class registerRequest {
   final String lastname;
   final String password;
   final String phonenumber;
-  final String refferalcode;
+  final String? refferalcode;
 
   registerRequest(
       {required this.email,
@@ -13,15 +13,15 @@ class registerRequest {
       required this.lastname,
       required this.password,
       required this.phonenumber,
-      required this.refferalcode});
+       this.refferalcode});
        Map<String, String> toJson() {
     return {
       'email': email,
-      'fistname': firstname,
+      'firstname': firstname,
       'lastname':lastname,
       'password': password,
       'phone': phonenumber,
-      'refferal_code':refferalcode,
+      'referral_code':refferalcode.toString(),
     };
   }
 }

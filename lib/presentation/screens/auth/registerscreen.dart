@@ -24,216 +24,221 @@ class Registerscreen extends StatelessWidget {
     TextEditingController passwordcontroller = TextEditingController();
     TextEditingController phonrcontroller = TextEditingController();
     TextEditingController refferalcodecontroller = TextEditingController();
-    return BlocListener<SignupBloc,SignupState>(
-      listener: (context, state) {
-        if(state is SignUpLoading){
-          showDialog(
-            context: context,
-            barrierDismissible: false,
-            builder: (BuildContext context) =>
-                const Center(child: CircularProgressIndicator()),
-          );
-        }else if(state is SignUpSuccessful){
-          Navigator.pop(context);
-          showTopSnackBar(
+    return BlocListener<SignupBloc, SignupState>(
+        listener: (context, state) {
+          if (state is SignUpLoading) {
+            print("signup loading success");
+            showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (BuildContext context) =>
+                  const Center(child: CircularProgressIndicator()),
+            );
+          } else if (state is SignUpSuccessful) {
+            print("signed starte successful");
+            Navigator.pop(context);
+            showTopSnackBar(
               curve: Curves.bounceOut,
               animationDuration: const Duration(milliseconds: 500),
               displayDuration: const Duration(milliseconds: 1500),
               snackBarPosition: SnackBarPosition.bottom,
-            Overlay.of(context),const CustomSnackBar.success(message:"Login successfully"),
+              Overlay.of(context),
+              const CustomSnackBar.success(message: "Login successfully"),
             );
-          
-              Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(
-                builder: (context) => UserHomeScreen(),
-              ),
-              (route) => false);
-          }else if(state is SignUpError){
-       Navigator.pop(context);
-       showTopSnackBar(
+           
+            Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(
+                  builder: (context) => UserHomeScreen(),
+                ),
+                (route) => false);
+          } else if (state is SignUpError) {
+            Navigator.pop(context);
+            showTopSnackBar(
               curve: Curves.bounceOut,
               animationDuration: const Duration(milliseconds: 500),
               displayDuration: const Duration(milliseconds: 1500),
               snackBarPosition: SnackBarPosition.bottom,
-            Overlay.of(context),const CustomSnackBar.error(message:"Error in Login"),
+              Overlay.of(context),
+              const CustomSnackBar.error(message: "Error in Login"),
             );
-              
           }
-
-      },
-      child: Scaffold(
-      body: Stack(
-        children: [
-          Positioned.fill(
-            child: PageView(
-              children: [
-                Image.asset(
-                  'assets/images/andres-jasso-u4unYsXQHnE-unsplash.jpg',
-                  fit: BoxFit.cover,
+        },
+        child: Scaffold(
+          body: Stack(
+            children: [
+              Positioned.fill(
+                child: PageView(
+                  children: [
+                    Image.asset(
+                      'assets/images/andres-jasso-u4unYsXQHnE-unsplash.jpg',
+                      fit: BoxFit.cover,
+                    ),
+                    const AnimatedCircularIcon(
+                      size: 60,
+                      iconData: Icons.person_2_outlined,
+                    ),
+                  ],
                 ),
-                const AnimatedCircularIcon(
-                  size: 60,
-                  iconData: Icons.person_2_outlined,
-                ),
-              ],
-            ),
-          ),
-          Container(
-            color: Colors.black.withOpacity(0.6),
-          ),
-          SingleChildScrollView(
-            child: Form(
-              key: formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  ClipPath(
-                    clipper: BackgroundClipper(),
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                      child: Container(
-                        height: 200,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [
-                              Colors.black.withOpacity(0.3),
-                              Colors.black.withOpacity(0.1),
-                            ],
-                          ),
-                        ),
-                        child: Center(
-                          child: Image.asset(
-                            'assets/images/pngwing.com.png',
-                            width: 200,
+              ),
+              Container(
+                color: Colors.black.withOpacity(0.6),
+              ),
+              SingleChildScrollView(
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      ClipPath(
+                        clipper: BackgroundClipper(),
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                          child: Container(
                             height: 200,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [
+                                  Colors.black.withOpacity(0.3),
+                                  Colors.black.withOpacity(0.1),
+                                ],
+                              ),
+                            ),
+                            child: Center(
+                              child: Image.asset(
+                                'assets/images/pngwing.com.png',
+                                width: 200,
+                                height: 200,
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: Column(
-                      children: [
-                        Row(
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: Column(
                           children: [
-                            const AnimatedCircularIcon(
-                              size: 60,
-                              iconData: Icons.person_add,
+                            Row(
+                              children: [
+                                const AnimatedCircularIcon(
+                                  size: 60,
+                                  iconData: Icons.person_add,
+                                ),
+                                const SizedBox(width: 10),
+                                Text(
+                                  'REGISTER',
+                                  style: GoogleFonts.lato(
+                                    fontSize: 40,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w500,
+                                    letterSpacing: 5,
+                                  ),
+                                ),
+                              ],
                             ),
-                            const SizedBox(width: 10),
-                            Text(
-                              'REGISTER',
-                              style: GoogleFonts.lato(
-                                fontSize: 40,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500,
-                                letterSpacing: 5,
-                              ),
+                            const SizedBox(
+                              height: 40,
                             ),
+                            TextFormRegister(
+                                keyboardType: TextInputType.emailAddress,
+                                prefixIcon: Icons.email,
+                                controller: emailController,
+                                hintText: "Email id",
+                                errorText: "Enter valid email"),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            TextFormRegister(
+                                keyboardType: TextInputType.name,
+                                prefixIcon: Icons.person,
+                                controller: firstnamecontroller,
+                                hintText: "First Name",
+                                errorText: "enter valid first name"),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            TextFormRegister(
+                                keyboardType: TextInputType.name,
+                                prefixIcon: Icons.person,
+                                controller: lastnamecontroller,
+                                hintText: "Last Name ",
+                                errorText: "enter valid second name"),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            TextFormRegister(
+                                keyboardType: TextInputType.text,
+                                prefixIcon: Icons.password,
+                                controller: passwordcontroller,
+                                obscureText: true,
+                                hintText: "Password",
+                                errorText: "enter valid password"),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            TextFormRegister(
+                                keyboardType: TextInputType.number,
+                                prefixIcon: Icons.phone_android,
+                                controller: phonrcontroller,
+                                hintText: "Phone Number",
+                                errorText: "enter valid phone number"),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            TextFormRegister(
+                                keyboardType: TextInputType.text,
+                                prefixIcon: Icons.code,
+                                controller: refferalcodecontroller,
+                                hintText: "Refferal Code",
+                                errorText: "enter valid refferal code"),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            CustomRoundedLoadingButton(
+                              onPressed: () {
+                                if (refferalcodecontroller.text.isEmpty ||
+                                    formKey.currentState!.validate()) {
+                                  BlocProvider.of<SignupBloc>(context).add(
+                                      SignupButtonPressed(
+                                          email: emailController.text,
+                                          firstname: firstnamecontroller.text,
+                                          lastname: lastnamecontroller.text,
+                                          password: passwordcontroller.text,
+                                          phonenumber: phonrcontroller.text,
+                                          refferalcode:
+                                              refferalcodecontroller.text));
+                                }
+                              },
+                              buttonText: "CONFIRM REGISTRATION",
+                              letterSpacing: 2,
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => const LoginScreen(),
+                                  ));
+                                },
+                                child: Text(
+                                  'Already have an account? Log in',
+                                  style: GoogleFonts.poppins(
+                                    textStyle: const TextStyle(
+                                        color: Colors.greenAccent),
+                                  ),
+                                )),
                           ],
                         ),
-                        const SizedBox(
-                          height: 40,
-                        ),
-                        TextFormRegister(
-                            keyboardType: TextInputType.emailAddress, 
-                            prefixIcon: Icons.email,
-                            controller: emailController,
-                            hintText: "Email id",
-                            errorText: "Enter valid email"),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        TextFormRegister(
-                            keyboardType: TextInputType.name,
-                            prefixIcon: Icons.person,
-                            controller: firstnamecontroller,
-                            hintText: "First Name",
-                            errorText: "enter valid first name"),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        TextFormRegister(
-                            keyboardType: TextInputType.name,
-                            prefixIcon: Icons.person,
-                            controller: lastnamecontroller,
-                            hintText: "Last Name ",
-                            errorText: "enter valid second name"),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        TextFormRegister(
-                            keyboardType: TextInputType.text,
-                            prefixIcon: Icons.password,
-                            controller: passwordcontroller,
-                            obscureText: true,
-                            hintText: "Password",
-                            errorText: "enter valid password"),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        TextFormRegister(
-                            keyboardType: TextInputType.number,
-                            prefixIcon: Icons.phone_android,
-                            controller: phonrcontroller,
-                            hintText: "Phone Number",
-                            errorText: "enter valid phone number"),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        
-                        const SizedBox(height: 20,),
-                        CustomRoundedLoadingButton(
-                          onPressed: () {
-                          if(formKey.currentState!.validate()){
-                            BlocProvider.of<SignupBloc>(context).add(
-                              SignupButtonPressed(
-                                email:emailController.text,
-                                firstname: firstnamecontroller.text,
-                                lastname: lastnamecontroller.text,
-                                password: passwordcontroller.text,
-                                phonenumber: phonrcontroller.text,
-                                refferalcode: refferalcodecontroller.text
-                                )
-                                
-                            );
-                          }
-
-                          },
-                        
-                          buttonText: "CONFIRM REGISTRATION",
-                          letterSpacing: 2,
-                          
-                        ),
-                        const SizedBox( height: 10,),
-                        
-                        TextButton(
-                            onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const LoginScreen(),
-                              ));
-                            },
-                            child: Text(
-                              'Already have an account? Log in',
-                              style: GoogleFonts.poppins(
-                                textStyle: const TextStyle(
-                                    color: Colors.greenAccent),
-                              ),
-                            )),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(height: 80),
+                    ],
                   ),
-                  const SizedBox(height: 80),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
-        ],
-      ),
-    )
-    );
+        ));
   }
 }

@@ -12,9 +12,6 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
     on<SignupButtonPressed>((event, emit) async {
       emit(SignUpLoading());
       try {
-        if (event.password != event.password) {
-          emit(SignUpFormInvalid(error: 'Passwords do not match'));
-        }
 
         final signupRequest = registerRequest(
           email:event.email,
@@ -25,6 +22,8 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
                refferalcode: event.refferalcode);
 
         final response = await authRepository.signup(signupRequest);
+        print("response is${response}");
+    
         if (response == 'success') {
           emit(SignUpSuccessful('User signed up successfully'));
         } else {

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:shoesneak/data/model/signup_model.dart';
 import 'package:shoesneak/util/functions/functions.dart';
 
 class AuthRepository {
@@ -8,7 +9,7 @@ class AuthRepository {
   static const String _signupEndpoint = '/user/signup';
   static const String _loginEndpoint = '/user/login';
 
-  Future<String> signup(  signupRequest) async {
+  Future<String> signup(registerRequest  signupRequest) async {
     final url = Uri.parse('$_baseUrl$_signupEndpoint');
     final body = jsonEncode(signupRequest.toJson());
 
@@ -24,11 +25,21 @@ class AuthRepository {
     if (response.statusCode == 201 || response.statusCode == 200) {
       // Handle successful signup (potentially parse response data)
       print('Signup successful!');
-      final data = jsonDecode(response.body);
-      final token = data['data']['Token'];
-      saveToken(token);
+       Map<String, dynamic> responseData = json.decode(response.body);
+
+      // Extract data from the response
+      int statusCode = responseData['status_code'];
+      String message = responseData['message'];
+
+       
+      print('Status Code: $statusCode');
+      print('Message: $message');
+      final token = responseData['data']['AccessToken'];
+     await saveToken(token);
+      print("object-------------------------------");
       return 'success';
     } else {
+      print("error is---------------------${response.statusCode}");
       final data = jsonDecode(response.body);
       String errorMessage = '';
       if (data['error'] == 'user already exist, sign in') {
@@ -78,7 +89,7 @@ class AuthRepository {
   }
 
   Future<Map<String, dynamic>> getUserProfile(String token) async {
-    final url = Uri.parse('http://10.0.2.2:8080/user/profile/details');
+    final url = Uri.parse('http://10.0.2.2:3000/user/profile/details');
     print('token is $token');
     final headers = {
       'Content-Type': 'application/json',

@@ -9,7 +9,8 @@ class TextFormRegister extends StatelessWidget {
     this.prefixIcon,
     required this.errorText,
     this.suffixIcon,
-    this.obscureText, required TextInputType keyboardType,
+    this.obscureText,
+    this.keyboardType,  
   }) : super(key: key);
 
   final TextEditingController controller;
@@ -18,6 +19,7 @@ class TextFormRegister extends StatelessWidget {
   final String errorText;
   final IconData? suffixIcon;
   final bool? obscureText;
+  final TextInputType? keyboardType;  
 
   @override
   Widget build(BuildContext context) {
@@ -26,17 +28,17 @@ class TextFormRegister extends StatelessWidget {
         borderRadius: BorderRadius.circular(15.0),
       ),
       child: TextFormField(
-        keyboardType: TextInputType.phone,
+        keyboardType: keyboardType,  
         obscureText: obscureText ?? false,
         controller: controller,
-        style: const TextStyle(color: Colors.greenAccent),
+        style: const TextStyle(color: Colors.lightGreenAccent),  
         decoration: InputDecoration(
           suffixIcon: suffixIcon != null ? Icon(suffixIcon) : null,
           fillColor: Colors.white,
           hintText: hintText,
           hintStyle: GoogleFonts.poppins(
             color: Colors.white,
-            fontSize: 15, 
+            fontSize: 16,  
           ),
           prefixIcon: prefixIcon != null
               ? Icon(prefixIcon, color: Colors.white,size: 20,)
@@ -46,7 +48,7 @@ class TextFormRegister extends StatelessWidget {
           if (value == null || value.isEmpty) {
             return errorText;
           }
-          return null;  
+          return null; 
         },
       ),
     );
