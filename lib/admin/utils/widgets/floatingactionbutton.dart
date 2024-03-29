@@ -4,6 +4,7 @@ import 'package:shoesneak/admin/bussiness_logic/admincategory/bloc/categorybloc_
 import 'package:shoesneak/admin/utils/widgets/elevatedbutton.dart';
 import 'package:shoesneak/admin/utils/widgets/textformfield.dart';
 
+// ignore: camel_case_types
 class floatingactionbuttonadding extends StatelessWidget {
   const floatingactionbuttonadding({
     super.key,
@@ -15,6 +16,7 @@ class floatingactionbuttonadding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
+      backgroundColor: Colors.black,
       onPressed: () {
         showDialog(
           context: context,
@@ -48,7 +50,7 @@ class floatingactionbuttonadding extends StatelessWidget {
           },
         );
       },
-      child: const Icon(Icons.add),
+      child: const Icon(Icons.add,color: Colors.white,),
     );
   }
 }

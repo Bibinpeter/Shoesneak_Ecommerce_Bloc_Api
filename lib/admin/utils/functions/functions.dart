@@ -4,6 +4,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shoesneak/admin/bussiness_logic/admincategory/bloc/categorybloc_bloc.dart';
 import 'package:shoesneak/admin/presentation/adminlogin/adminlogin.dart';
 import 'package:shoesneak/admin/utils/widgets/textformfield.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 
 /////////////////-------ADMIN LOGOUT-----//////////////////////////////////////
@@ -13,6 +15,7 @@ Future<void> adminlogout(BuildContext context) async {
 
   // Show custom dialog
   showDialog(
+    // ignore: use_build_context_synchronously
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
@@ -32,6 +35,12 @@ Future<void> adminlogout(BuildContext context) async {
                 (route) => false,
                  
               );
+              showTopSnackBar(
+               snackBarPosition: SnackBarPosition.bottom,
+              // ignore: use_build_context_synchronously
+              Overlay.of(context),
+              const CustomSnackBar.info(message: "successfully loggedout"),
+            );
             },
             child: const Text('CONFIRM'),
           ),
@@ -114,6 +123,7 @@ void showEditDialog(BuildContext context, String categoryName) {
               ),
               const SizedBox(height: 20),
               TextFormFieldWidget(
+                
                 controller: editController,
                 hintText: 'Category Name',
                 errorText: 'Please give a valid name',
@@ -125,7 +135,7 @@ void showEditDialog(BuildContext context, String categoryName) {
                   ElevatedButton(
                     onPressed: () => Navigator.pop(context),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.grey,
+                      backgroundColor: const Color.fromARGB(255, 70, 68, 68),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
@@ -149,7 +159,7 @@ void showEditDialog(BuildContext context, String categoryName) {
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
+                      backgroundColor: const Color.fromARGB(255, 0, 0, 0),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),

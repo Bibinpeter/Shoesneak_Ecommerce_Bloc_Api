@@ -1,4 +1,4 @@
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 class TextFormFieldWidget extends StatelessWidget {
   const TextFormFieldWidget(
@@ -22,34 +22,21 @@ class TextFormFieldWidget extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15.0),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
-            color: const Color.fromARGB(255, 184, 184, 184).withOpacity(0.5),
-            spreadRadius: 2,
-            blurRadius: 1,
-            offset: const Offset(0, 3), // changes position of shadow
+            color: Color.fromARGB(255, 101, 101, 101),
+
+            offset: Offset(0, 3), // changes position of shadow
           ),
         ],
       ),
       child: TextFormField(
-        obscureText: obscureText ?? false,
+        textAlign: TextAlign.center,
         controller: controller,
         decoration: InputDecoration(
           suffixIcon: suffixIcon != null ? Icon(suffixIcon) : null,
-          fillColor: Colors.blueGrey,
           hintText: hintText,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.0),
-            borderSide: const BorderSide(color:  Colors.blueGrey,),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.0),
-            borderSide: const BorderSide(color: Colors.blueGrey,),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.0),
-            borderSide: const BorderSide(color: Colors.blueGrey,),
-          ),
+          hintStyle: const TextStyle(color: Colors.white),
           prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
         ),
         validator: (value) {
