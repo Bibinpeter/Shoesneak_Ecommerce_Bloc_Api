@@ -51,7 +51,7 @@ class _CustomRoundedLoadingButtonState extends State<CustomRoundedLoadingButtonS
   }
 
   void _doSomething() async {
-    Timer(const Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 1), () {
       _btnController.success();
     });
   }

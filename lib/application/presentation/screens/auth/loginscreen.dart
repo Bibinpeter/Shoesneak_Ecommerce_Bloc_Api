@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, avoid_types_as_parameter_names, prefer_const_constructors
 
 import 'dart:ui';
 
@@ -8,7 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shoesneak/application/bloc/login/bloc/login_bloc.dart';
 import 'package:shoesneak/application/presentation/screens/auth/registerscreen.dart';
 import 'package:shoesneak/application/presentation/screens/auth/widget/textformfieldlogin.dart';
-import 'package:shoesneak/application/presentation/screens/userhomescreen/user_homescreen.dart';
+import 'package:shoesneak/application/presentation/screens/bottomnav/bottomnav.dart';
 import 'package:shoesneak/application/presentation/widget/customloginbutton.dart';
 import 'package:shoesneak/application/presentation/widget/widgets.dart';
 import 'package:shoesneak/domain/core/constrains/const.dart';
@@ -39,12 +39,12 @@ class LoginScreen extends StatelessWidget {
             showTopSnackBar(
               curve: Curves.bounceOut,
               animationDuration: const Duration(milliseconds: 500),
-              displayDuration: const Duration(milliseconds: 1500),
+              displayDuration: const Duration(milliseconds: 1500), 
               snackBarPosition: SnackBarPosition.bottom,
               Overlay.of(context),
               const CustomSnackBar.success(message: "Login successfully"),
             );
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) => UserHomeScreen(),));
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) =>Bottomnavuser()));
           } else if (State is LoginError) {
             Navigator.pop(context);
             showTopSnackBar(
