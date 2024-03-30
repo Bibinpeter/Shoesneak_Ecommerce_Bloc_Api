@@ -27,10 +27,10 @@ class floatingactionbuttonadding extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    TextFormFieldWidget(
+                    TextFormFieldWidgetadmin(
                       controller: nameController,
                       hintText: 'Name of category',
-                      errorText: 'Try another Name',
+                      errorText: 'Try another Name',  
                     ),
                     const SizedBox(height: 10),
                     ElevatedButtonWidget(

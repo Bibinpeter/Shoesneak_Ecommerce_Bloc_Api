@@ -2,9 +2,9 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shoesneak/admin/utils/functions/functions.dart';
-import 'package:shoesneak/bloc/splash/bloc/splash_bloc.dart';
-import 'package:shoesneak/presentation/screens/auth/loginscreen.dart';
-import 'package:shoesneak/presentation/screens/boardingscreens/diversion.dart';
+import 'package:shoesneak/application/bloc/splash/bloc/splash_bloc.dart';
+import 'package:shoesneak/application/presentation/screens/auth/loginscreen.dart';
+import 'package:shoesneak/application/presentation/screens/boardingscreens/diversion.dart';
 
 class SplashScreen extends StatelessWidget {        
   const SplashScreen({Key? key}) : super(key: key);

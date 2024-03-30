@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:shoesneak/data/model/signup_model.dart';
-import 'package:shoesneak/data/repository/authrepo/authrepo.dart';
+import 'package:shoesneak/data/repository/authrepo.dart';
+import 'package:shoesneak/domain/model/signup_model.dart';
 
 part 'signup_event.dart';
 part 'signup_state.dart';

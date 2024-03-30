@@ -53,6 +53,8 @@ dependencies:
   animation_list: ^3.0.0
   meta: ^1.11.0
   rounded_loading_button_plus: ^3.0.1
+  easy_loading_button: ^0.3.2
+   
   
 
 dev_dependencies:

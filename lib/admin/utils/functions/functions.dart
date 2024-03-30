@@ -122,8 +122,7 @@ void showEditDialog(BuildContext context, String categoryName) {
                 ),
               ),
               const SizedBox(height: 20),
-              TextFormFieldWidget(
-                
+              TextFormFieldWidgetadmin(
                 controller: editController,
                 hintText: 'Category Name',
                 errorText: 'Please give a valid name',

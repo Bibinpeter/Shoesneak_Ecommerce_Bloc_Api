@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class TextFormFieldWidget extends StatelessWidget {
-  const TextFormFieldWidget(
+class TextFormFieldWidgetadmin extends StatelessWidget {
+  const TextFormFieldWidgetadmin(
       {super.key,
       required this.controller,
       required this.hintText,
       this.prefixIcon,
       required this.errorText,
       this.suffixIcon,
-      this.obscureText});
+      this.obscureText,});
 
   final TextEditingController controller;
   final String hintText;

@@ -2,7 +2,7 @@ import 'package:action_slider/action_slider.dart';
 import 'package:concentric_transition/page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shoesneak/presentation/screens/boardingscreens/diversion.dart';
+import 'package:shoesneak/application/presentation/screens/boardingscreens/diversion.dart';
  
 
 // ignore: must_be_immutable

@@ -3,12 +3,12 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shoesneak/bloc/signup/bloc/signup_bloc.dart';
-import 'package:shoesneak/presentation/screens/auth/loginscreen.dart';
-import 'package:shoesneak/presentation/screens/userhomescreen/user_homescreen.dart';
-import 'package:shoesneak/presentation/widget/formfieldregister.dart';
-import 'package:shoesneak/presentation/widget/roundedloadingbutton.dart';
-import 'package:shoesneak/presentation/widget/widgets.dart';
+import 'package:shoesneak/application/bloc/signup/bloc/signup_bloc.dart';
+import 'package:shoesneak/application/presentation/screens/auth/loginscreen.dart';
+import 'package:shoesneak/application/presentation/screens/userhomescreen/user_homescreen.dart';
+import 'package:shoesneak/application/presentation/widget/formfieldregister.dart';
+import 'package:shoesneak/application/presentation/widget/roundedloadingbutton.dart';
+import 'package:shoesneak/application/presentation/widget/widgets.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
@@ -43,7 +43,7 @@ class Registerscreen extends StatelessWidget {
               displayDuration: const Duration(milliseconds: 1500),
               snackBarPosition: SnackBarPosition.bottom,
               Overlay.of(context),
-              const CustomSnackBar.success(message: "Login successfully"),
+              const CustomSnackBar.success(message: "Registered successfully"),
             );
            
             Navigator.of(context).pushAndRemoveUntil(
@@ -195,7 +195,7 @@ class Registerscreen extends StatelessWidget {
                             const SizedBox(
                               height: 20,
                             ),
-                            CustomRoundedLoadingButton(
+                            CustomRoundedLoadingButtonR(
                               onPressed: () {
                                 if (refferalcodecontroller.text.isEmpty ||
                                     formKey.currentState!.validate()) {

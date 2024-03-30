@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rounded_loading_button_plus/rounded_loading_button.dart';
 
-class CustomRoundedLoadingButton extends StatefulWidget {
+class CustomRoundedLoadingButtonR extends StatefulWidget {
   final Function onPressed;
   final String buttonText;
   final Color buttonColor;
   final Color textColor;
   final double letterSpacing; 
 
-  const CustomRoundedLoadingButton({
+  const CustomRoundedLoadingButtonR({
     Key? key,
     required this.onPressed,
     required this.buttonText,
@@ -26,7 +26,7 @@ class CustomRoundedLoadingButton extends StatefulWidget {
       _CustomRoundedLoadingButtonState();
 }
 
-class _CustomRoundedLoadingButtonState extends State<CustomRoundedLoadingButton> {
+class _CustomRoundedLoadingButtonState extends State<CustomRoundedLoadingButtonR> {
   final RoundedLoadingButtonController _btnController =
       RoundedLoadingButtonController();
 
