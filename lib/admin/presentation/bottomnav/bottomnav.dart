@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shoesneak/admin/bussiness_logic/naviagationbar/bloc/navbloc_bloc.dart';
-import 'package:shoesneak/admin/presentation/add_product/addproduct.dart';
+import 'package:shoesneak/admin/presentation/add_product/add_cart.dart';
 import 'package:shoesneak/admin/presentation/admin_home_screen/admin_homescreen.dart';
 import 'package:shoesneak/admin/presentation/offers_and_coupons/offers_nd_coupons.dart';
 import 'package:shoesneak/admin/presentation/users_screen/users_screen.dart';
@@ -24,7 +24,7 @@ class BottomNavBar extends StatelessWidget {
           if (state is HomeSelected) {
             currentScreen = const AdminHome();
           } else if (state is AddProductSelected) {
-            currentScreen = const AddProductingScrn();
+            currentScreen = const AddCategoryScrn();
             currentIndex = 1;
           } else if (state is OffersCouponsSelected) {
             currentScreen = const OffersAndCouponsAddingScreen();

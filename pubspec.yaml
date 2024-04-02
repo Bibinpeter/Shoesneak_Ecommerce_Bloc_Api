@@ -54,6 +54,8 @@ dependencies:
   meta: ^1.11.0
   rounded_loading_button_plus: ^3.0.1
   custom_refresh_indicator: ^3.1.0
+  dio: ^5.4.2+1
+  image_picker: ^1.0.7
 
 
    

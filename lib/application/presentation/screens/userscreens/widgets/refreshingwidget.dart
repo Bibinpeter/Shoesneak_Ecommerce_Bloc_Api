@@ -305,3 +305,16 @@ class Sky extends CustomPainter {
   @override
   bool shouldRebuildSemantics(Sky oldDelegate) => false;
 }
+   
+   /////////////  THE CALLING FUNCTION ///////
+
+//  WarpIndicator(
+//           child: ListView.builder(  
+//             itemCount: 20,
+//             itemBuilder: (context, index) => ListTile(title: Text('Item $index')),
+//           ),
+//           onRefresh: () async {
+//             // Simulate a delay of 2 seconds to mimic refreshing behavior
+//             await Future.delayed(Duration(milliseconds: 800));
+//           },
+//         ),

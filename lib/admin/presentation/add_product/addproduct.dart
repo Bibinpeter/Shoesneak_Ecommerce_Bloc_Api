@@ -1,102 +1,240 @@
-import 'package:animation_list/animation_list.dart';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:shoesneak/admin/bussiness_logic/admincategory/bloc/categorybloc_bloc.dart';
-import 'package:shoesneak/admin/utils/functions/functions.dart';
-import 'package:shoesneak/admin/utils/widgets/floatingactionbutton.dart';
+import 'package:shoesneak/admin/bussiness_logic/product/bloc/product_bloc.dart';
+import 'package:shoesneak/admin/data/model/product.dart';
 
 class AddProductingScrn extends StatelessWidget {
-  // ignore: use_key_in_widget_constructors
-  const AddProductingScrn({Key? key});
+  final List<dynamic> sizes = [
+    'W4',
+    'W5',
+    'W6',
+    'W7',
+    'W8',
+    'W9',
+    'W10',
+    'M4',
+    'M5',
+    'M6',
+    'M7',
+    'M8',
+    'M9',
+    'M10',
+    'K1',
+    'K2',
+    'K3',
+    'K4'
+  ];
 
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController productnameController = TextEditingController();
+   final TextEditingController descriptionController = TextEditingController();
+  final TextEditingController stockController = TextEditingController();
+  final TextEditingController priceController = TextEditingController();
 
-  Widget _buildListTile(BuildContext context, Map<String, dynamic> category) {
-    return Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          boxShadow: [
-            BoxShadow(
-              color: const Color.fromARGB(255, 5, 250, 201).withOpacity(0.5),
-              spreadRadius: 5,
-            ),
-          ],
-          color:const Color.fromARGB(255, 60, 153, 199)
-        ),
-        child: ListTile(
-          title: Text(category['category'],),
-          trailing: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              IconButton(
-                icon: const Icon(Icons.edit),
-                onPressed: () {
-                  showEditDialog(context, category['category']);
-                },
-              ),
-              IconButton(
-                icon: const Icon(Icons.delete),
-                onPressed: () {
-                  confirmDelete(context, category['id'], category['category']);
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
+  AddProductingScrn(
+      {super.key, required this.categoryName, required this.id});
+
+  final String categoryName;
+  final int id;
 
   @override
   Widget build(BuildContext context) {
-    final nameController = TextEditingController();
-    context.read<CategoryblocBloc>().add(LoadCategory());
+    final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+    String? selectedSize = sizes[0];
+    File? image;
 
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          'CATEGORIES',
-          style: GoogleFonts.poppins(
-            fontSize: 20,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
+        title: const Text('Add Inventory Item'),
       ),
-      body: BlocConsumer<CategoryblocBloc, CategoryblocState>(
-        listener: (context, state) {},
+      body: BlocConsumer<ProductBloc, ProductState>(
+        listener: (context, state) {
+          if (state is ProductLoading) {
+            const Center(child: CircularProgressIndicator());
+          } else if (state is ImagePicked) {
+            // Update image if pick was successful
+            image = state.imageFile;
+          } else if (state is ProductPosted) {
+            // Show success snackbar
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Product Added Successfully'),
+                backgroundColor: Colors.green,
+              ),
+            );
+          } else if (state is ProductError) {
+            // Show error snackbar
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('There was an error while adding.'),
+                backgroundColor: Colors.red,
+              ),
+            );
+          }
+        },
         builder: (context, state) {
-          if (state is CategoryLoading) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is CategoryLoaded) {
-            return Column(
-              children: [
-                Center(
-                  child: Text(state.categories.isEmpty ? 'No categories found' : ''),
-                ),
-                if (state.categories.isNotEmpty)
-                  Expanded(
-                    child: AnimationList(
-                      duration: 2200,
-                      reBounceDepth: 13.0, 
-                      children: state.categories.map((category) {
-                        return _buildListTile(context, category);
-                      }).toList(),
+          return SingleChildScrollView(
+            padding: const EdgeInsets.all(16.0),
+            child: Form(
+              key: formKey,
+              child: Column(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      BlocProvider.of<ProductBloc>(context).add(PickImage());
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      height: 200,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15.0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: const Color.fromARGB(255, 184, 184, 184)
+                                .withOpacity(0.5),
+                            spreadRadius: 2,
+                            blurRadius: 1,
+                            offset: const Offset(0, 3),
+                          ),
+                        ],
+                      ),
+                      child: image == null
+                          ? const Icon(Icons.add_a_photo,
+                              size: 50) // Display if no image is selected
+                          : ClipRRect(
+                              borderRadius: BorderRadius.circular(15.0),
+                              child:
+                                  Image.file(image!), // Display selected image
+                            ),
                     ),
                   ),
-              ],
-            );
-          } else if (state is CategoryError) {
-            return const Center(child: Text('Please wait, there is some issue'));
-          }
-          return Container();  
+                  const SizedBox(height: 10),
+                  DropdownButtonFormField<String>(
+                    value: selectedSize,
+                    hint: const Text('Select Size'),
+                    items: sizes.map((size) {
+                      return DropdownMenuItem<String>(
+                        value: size,
+                        child: Text(size),
+                      );
+                    }).toList(),
+                    onChanged: (value) {
+                      selectedSize = value;
+                    },
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please select a size.';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 10),
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      hintText: 'Name',
+                    ),
+                    controller: nameController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter a name.';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 10),
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      hintText: 'Stock',
+                    ),
+                    controller: stockController,
+                    keyboardType: TextInputType.number,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter the stock.';
+                      }
+                      try {
+                        int.parse(value); // Check if input is a valid integer
+                      } catch (_) {
+                        return 'Please enter a valid number for stock.';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 10),
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      hintText: 'Price',
+                    ),
+                    controller: priceController,
+                    keyboardType:
+                        const TextInputType.numberWithOptions(decimal: true),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter the price.';
+                      }
+                      try {
+                        double.parse(value); // Check if input is a valid double
+                      } catch (_) {
+                        return 'Please enter a valid price.';
+                      }
+                      return null;
+                    },
+                  ),
+                   TextFormField(
+                    decoration: const InputDecoration(
+                      hintText: 'description',
+                    ),
+                    controller: priceController,
+                    keyboardType:
+                        const TextInputType.numberWithOptions(decimal: true),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter the description.';
+                      }
+                      try {
+                        double.parse(value); // Check if input is a valid double
+                      } catch (_) {
+                        return 'Please enter a valid description.';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 10),
+                  ElevatedButton(
+                    onPressed: () {
+                      if (formKey.currentState!.validate()) {
+                        final product = Product(
+                          id: id,
+                           categoryId: id,
+                            description: descriptionController.text,
+                             name: nameController.text,
+                              price: int.parse(priceController.text),
+                                stock:  int.parse(stockController.text),
+                                 size: selectedSize ?? '',
+                                 
+                                 );
+              
+                        BlocProvider.of<ProductBloc>(context)
+                            .add(PostProduct(product: product));
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                                'Please fix form errors before submitting.'),
+                          ),
+                        );
+                      }
+                    },
+                    child: const Text('Add Item'),
+                  ),
+                ],
+              ),
+            ),
+          );
         },
       ),
-      floatingActionButton: floatingactionbuttonadding(nameController: nameController),
     );
   }
 }
-
-
