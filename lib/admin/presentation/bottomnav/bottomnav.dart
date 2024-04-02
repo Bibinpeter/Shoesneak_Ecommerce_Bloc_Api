@@ -24,7 +24,7 @@ class BottomNavBar extends StatelessWidget {
           if (state is HomeSelected) {
             currentScreen = const AdminHome();
           } else if (state is AddProductSelected) {
-            currentScreen = const AddCategoryScrn();
+            currentScreen =  AddCategoryscrn();
             currentIndex = 1;
           } else if (state is OffersCouponsSelected) {
             currentScreen = const OffersAndCouponsAddingScreen();

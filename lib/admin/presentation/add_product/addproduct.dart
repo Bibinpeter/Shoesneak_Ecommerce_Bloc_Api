@@ -47,7 +47,7 @@ class AddProductingScrn extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Inventory Item'),
+        title: const Text('Add a product'),
       ),
       body: BlocConsumer<ProductBloc, ProductState>(
         listener: (context, state) {
@@ -92,7 +92,7 @@ class AddProductingScrn extends StatelessWidget {
                         borderRadius: BorderRadius.circular(15.0),
                         boxShadow: [
                           BoxShadow(
-                            color: const Color.fromARGB(255, 184, 184, 184)
+                            color: const Color.fromARGB(255, 95, 162, 198)
                                 .withOpacity(0.5),
                             spreadRadius: 2,
                             blurRadius: 1,
@@ -182,21 +182,14 @@ class AddProductingScrn extends StatelessWidget {
                       return null;
                     },
                   ),
-                   TextFormField(
+                    TextFormField(
                     decoration: const InputDecoration(
                       hintText: 'description',
                     ),
-                    controller: priceController,
-                    keyboardType:
-                        const TextInputType.numberWithOptions(decimal: true),
+                    controller: descriptionController,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter the description.';
-                      }
-                      try {
-                        double.parse(value); // Check if input is a valid double
-                      } catch (_) {
-                        return 'Please enter a valid description.';
+                        return 'Please enter a description.';
                       }
                       return null;
                     },
