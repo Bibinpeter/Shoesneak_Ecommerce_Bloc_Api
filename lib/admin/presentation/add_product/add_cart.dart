@@ -11,32 +11,31 @@ class AddCategoryscrn extends StatelessWidget {
   // ignore: use_key_in_widget_constructors
   const AddCategoryscrn({Key? key});
 
-
   Widget _buildListTile(BuildContext context, Map<String, dynamic> category) {
     return Padding(
-      padding: const EdgeInsets.all(15.0),
-      
+      padding: const EdgeInsets.all(10.0),
       child: InkWell(
-        onTap:  () =>
-                            Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => AddProductingScrn(
-                            id: category['id'],
-                            categoryName: category['category'],
-                          ),
-                        )),
+        onTap: () => Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => AddProductingScrn(
+            id: category['id'],
+            categoryName: category['category'],
+          ),
+        )),
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
-            boxShadow: [
-              BoxShadow(
-                color: const Color.fromARGB(255, 5, 250, 201).withOpacity(0.5),
-                spreadRadius: 2,
-              ),
-            ],
-            color:const Color.fromARGB(255, 60, 153, 199)
-          ),
+              borderRadius: BorderRadius.circular(20.0),
+              boxShadow: [
+                BoxShadow(
+                  color:
+                      const Color.fromARGB(255, 0, 255, 229).withOpacity(0.5),
+                  spreadRadius: 2,
+                ),
+              ],
+              color: const Color.fromARGB(255, 69, 159, 204)),
           child: ListTile(
-            title: Text(category['category'],),
+            title: Text(
+              category['category'],
+            ),
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -49,7 +48,8 @@ class AddCategoryscrn extends StatelessWidget {
                 IconButton(
                   icon: const Icon(Icons.delete),
                   onPressed: () {
-                    confirmDelete(context, category['id'], category['category']);
+                    confirmDelete(
+                        context, category['id'], category['category']);
                   },
                 ),
               ],
@@ -85,13 +85,14 @@ class AddCategoryscrn extends StatelessWidget {
             return Column(
               children: [
                 Center(
-                  child: Text(state.categories.isEmpty ? 'No categories found' : ''),
+                  child: Text(
+                      state.categories.isEmpty ? 'No categories found' : ''),
                 ),
                 if (state.categories.isNotEmpty)
                   Expanded(
                     child: AnimationList(
                       duration: 2200,
-                      reBounceDepth: 13.0, 
+                      reBounceDepth: 13.0,
                       children: state.categories.map((category) {
                         return _buildListTile(context, category);
                       }).toList(),
@@ -100,12 +101,14 @@ class AddCategoryscrn extends StatelessWidget {
               ],
             );
           } else if (state is CategoryError) {
-            return const Center(child: Text('Please wait, there is some issue'));
+            return const Center(
+                child: Text('Please wait, there is some issue'));
           }
-          return Container();  
+          return Container();
         },
       ),
-      floatingActionButton: floatingactionbuttonadding(nameController: nameController),
+      floatingActionButton:
+          floatingactionbuttonadding(nameController: nameController),
     );
   }
 }

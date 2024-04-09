@@ -110,11 +110,11 @@ final List<Product> products = [
   Product(
       name: 'Product 1',
       imageUrl:
-          'https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/f50070d2-77a3-4213-aebf-9371d9759548/air-max-dn-shoes-FtLNfm.png'),
+          'https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/4d392168-af3f-43f3-be8b-3ff774faaa05/air-foamposite-one-shoes-9ZhmtD.png'),
   Product(
       name: 'Product 2',
       imageUrl:
-          'https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/35c07f69-1d7a-4272-abe4-4adf4b9a9d2f/air-max-dn-shoes-FtLNfm.png'),
+          'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/be6cc78b-c55c-47d3-a0e3-d5abfe4f31c7/luka-2-pf-basketball-shoes-LM9ScX.png'),
   Product(
       name: 'Product 3',
       imageUrl:

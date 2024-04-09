@@ -6,35 +6,16 @@ import 'package:shoesneak/admin/bussiness_logic/product/bloc/product_bloc.dart';
 import 'package:shoesneak/admin/data/model/product.dart';
 
 class AddProductingScrn extends StatelessWidget {
-  final List<dynamic> sizes = [
-    'W4',
-    'W5',
-    'W6',
-    'W7',
-    'W8',
-    'W9',
-    'W10',
-    'M4',
-    'M5',
-    'M6',
-    'M7',
-    'M8',
-    'M9',
-    'M10',
-    'K1',
-    'K2',
-    'K3',
-    'K4'
-  ];
+  final List<dynamic> sizes = ['W4','W5', 'W6','W7','W8','W9','W10','M4','M5','M6','M7','M8','M9','M10','K1','K2','K3','K4'];
 
   final TextEditingController nameController = TextEditingController();
   final TextEditingController productnameController = TextEditingController();
-   final TextEditingController descriptionController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
   final TextEditingController stockController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
 
   AddProductingScrn(
-      {super.key, required this.categoryName, required this.id});
+      { required this.categoryName, required this.id});
 
   final String categoryName;
   final int id;

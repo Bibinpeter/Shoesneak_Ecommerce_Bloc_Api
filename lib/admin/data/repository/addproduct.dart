@@ -27,7 +27,7 @@ class ProductService {
         formData.files.add(MapEntry(
           'files',
           await MultipartFile.fromFile(
-            File(product.image!.path) as String,
+            product.image!.path,
             filename: 'image.jpg',
           ),
         ));
@@ -43,8 +43,38 @@ class ProductService {
       );
 
       return response;
+    // ignore: deprecated_member_use
     } on DioError catch (error) {
       throw Exception('Error adding product: ${error.message}');
+    }
+  }
+
+  Future<Response<dynamic>> uploadImage(File imageFile) async {
+    final token = await getToken();
+    dio.options.headers['Authorization'] = 'Bearer $token';
+
+    try {
+      // Create FormData and add image file
+      FormData formData = FormData.fromMap({
+        'files': await MultipartFile.fromFile(
+          imageFile.path,
+          filename: 'image.jpg',
+        ),
+      });
+
+      // Make POST request to upload image
+      final response = await dio.post(
+        'http://10.0.2.2:3000/admin/upload-image',
+        data: formData,
+        options: Options(
+          contentType: Headers.formUrlEncodedContentType,
+        ),
+      );
+
+      return response;
+    // ignore: deprecated_member_use
+    } on DioError catch (error) {
+      throw Exception('Error uploading image: ${error.message}');
     }
   }
 
@@ -52,7 +82,7 @@ class ProductService {
    Future<List<ProductFromApi>> getProducts() async {
     try {
       final dio = Dio();
-      final response = await dio.get('http://10.0.2.2:3000/admin/products?page=1&count=1');
+      final response = await dio.get('http://10.0.2.2:3000/admin/products');
 
       if (response.statusCode == 200) {
         final responseData = response.data as Map<String, dynamic>;
