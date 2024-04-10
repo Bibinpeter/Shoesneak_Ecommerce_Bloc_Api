@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shoesneak/admin/bussiness_logic/admincategory/bloc/categorybloc_bloc.dart';
-import 'package:shoesneak/admin/presentation/adminlogin/adminlogin.dart';
+import 'package:shoesneak/admin/application/bussiness_logic/admincategory/bloc/categorybloc_bloc.dart';
+import 'package:shoesneak/admin/application/presentation/adminlogin/adminlogin.dart';
 import 'package:shoesneak/admin/utils/widgets/textformfield.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';

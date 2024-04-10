@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shoesneak/admin/presentation/adminlogin/adminlogin.dart';
+import 'package:shoesneak/admin/application/presentation/adminlogin/adminlogin.dart';
 import 'package:shoesneak/application/presentation/screens/auth/loginscreen.dart';
 import 'package:shoesneak/application/presentation/widget/widgets.dart';
 import 'package:video_player/video_player.dart';

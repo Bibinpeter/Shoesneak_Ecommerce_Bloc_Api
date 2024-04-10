@@ -7,8 +7,8 @@ class FetchUsers extends UsersEvent {}
 
 class BlockUser extends UsersEvent {
   final int userId;
-
-  BlockUser(this.userId);
+    
+  BlockUser(this.userId,);
 }
 
 class UnblockUser extends UsersEvent {

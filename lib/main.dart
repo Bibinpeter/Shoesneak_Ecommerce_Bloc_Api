@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
-import 'package:shoesneak/admin/bussiness_logic/admincategory/bloc/categorybloc_bloc.dart';
-import 'package:shoesneak/admin/bussiness_logic/loginbloc/login_bloc_bloc.dart';
-import 'package:shoesneak/admin/bussiness_logic/naviagationbar/bloc/navbloc_bloc.dart';
-import 'package:shoesneak/admin/bussiness_logic/product/bloc/product_bloc.dart';
+import 'package:shoesneak/admin/application/bussiness_logic/admincategory/bloc/categorybloc_bloc.dart';
+import 'package:shoesneak/admin/application/bussiness_logic/loginbloc/login_bloc_bloc.dart';
+import 'package:shoesneak/admin/application/bussiness_logic/naviagationbar/bloc/navbloc_bloc.dart';
+import 'package:shoesneak/admin/application/bussiness_logic/product/bloc/product_bloc.dart';
+import 'package:shoesneak/admin/application/bussiness_logic/users_bloc/bloc/users_bloc.dart';
 import 'package:shoesneak/application/bloc/login/bloc/login_bloc.dart';
 import 'package:shoesneak/application/bloc/navbar/bloc/navbar_bloc.dart';
 import 'package:shoesneak/application/bloc/signup/bloc/signup_bloc.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (_) => NavblocBloc()),
            BlocProvider(create: (_) => ProductBloc()),
           BlocProvider(create: (_) => CategoryblocBloc()),
+           BlocProvider(create: (_) => UsersBloc()),
           BlocProvider(create: (_) => SplashBloc()),
           BlocProvider(create: (_) => SignupBloc()),
           BlocProvider(create: (_) => LoginBloc()),

@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shoesneak/admin/bussiness_logic/product/bloc/product_bloc.dart';
+import 'package:shoesneak/admin/application/bussiness_logic/product/bloc/product_bloc.dart';
 import 'package:shoesneak/admin/data/model/product.dart';
 
 class AddProductingScrn extends StatelessWidget {

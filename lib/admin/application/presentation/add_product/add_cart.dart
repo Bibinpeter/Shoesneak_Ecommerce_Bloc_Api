@@ -2,8 +2,8 @@ import 'package:animation_list/animation_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shoesneak/admin/bussiness_logic/admincategory/bloc/categorybloc_bloc.dart';
-import 'package:shoesneak/admin/presentation/add_product/addproduct.dart';
+import 'package:shoesneak/admin/application/bussiness_logic/admincategory/bloc/categorybloc_bloc.dart';
+import 'package:shoesneak/admin/application/presentation/add_product/addproduct.dart';
 import 'package:shoesneak/admin/utils/functions/functions.dart';
 import 'package:shoesneak/admin/utils/widgets/floatingactionbutton.dart';
 

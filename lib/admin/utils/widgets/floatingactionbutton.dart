@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shoesneak/admin/bussiness_logic/admincategory/bloc/categorybloc_bloc.dart';
+import 'package:shoesneak/admin/application/bussiness_logic/admincategory/bloc/categorybloc_bloc.dart';
 import 'package:shoesneak/admin/utils/widgets/elevatedbutton.dart';
 import 'package:shoesneak/admin/utils/widgets/textformfield.dart';
 

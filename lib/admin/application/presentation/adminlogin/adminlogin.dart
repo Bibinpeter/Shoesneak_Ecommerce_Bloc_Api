@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shoesneak/admin/bussiness_logic/loginbloc/login_bloc_bloc.dart';
-import 'package:shoesneak/admin/presentation/bottomnav/bottomnav.dart';
+import 'package:shoesneak/admin/application/bussiness_logic/loginbloc/login_bloc_bloc.dart';
+import 'package:shoesneak/admin/application/presentation/bottomnav/bottomnav.dart';
 import 'package:shoesneak/application/presentation/widget/widgets.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';

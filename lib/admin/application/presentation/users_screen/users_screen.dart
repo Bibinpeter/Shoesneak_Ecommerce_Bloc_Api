@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shoesneak/admin/bussiness_logic/users_bloc/bloc/users_bloc.dart';
+import 'package:shoesneak/admin/application/bussiness_logic/users_bloc/bloc/users_bloc.dart';
 import 'package:shoesneak/admin/utils/functions/functions.dart';
 import 'package:shoesneak/domain/core/constrains/const.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
@@ -34,10 +34,10 @@ class UsersScreen extends StatelessWidget {
         ],
         centerTitle: true,
         title: Text(
-          'Users',
-          style: GoogleFonts.roboto(
+          'Users block || unblock ',
+          style: GoogleFonts.poppins(
             fontSize: 20,
-            fontWeight: FontWeight.w700,
+            fontWeight: FontWeight.w500,
           ),
         ),
       ),
@@ -69,7 +69,7 @@ class UsersScreen extends StatelessWidget {
                           BlocProvider.of<UsersBloc>(context).add(FetchUsers());
                         }
                       },
-                      child: Text(user.blockStatus == true ? 'unlock' : 'block'),
+                      child: Text(user.blockStatus == true ? 'unblock' : 'block'),
                     ),
                   ),
                 );

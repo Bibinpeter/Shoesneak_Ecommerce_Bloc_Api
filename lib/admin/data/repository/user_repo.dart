@@ -6,13 +6,13 @@ import 'package:shoesneak/admin/utils/functions/functions.dart';
 
 class UsersRepository {
   Future<List<User>> fetchUsers() async {
-    String baseUrl = 'http://10.0.2.2:3000/admin/users?page=1';
+    String baseUrl = 'http://10.0.2.2:3000/admin/users';
     try {
       final token = await getToken();
       final url = Uri.parse(baseUrl);
 
       final response = await http.get(
-        url,
+        url, 
         headers: {'Authorization': 'Bearer $token'},
       );
 
@@ -33,13 +33,11 @@ class UsersRepository {
   }
 
   // Function to block a user
-  Future<void> blockUser(
-    int userId,
-  ) async {
+  Future<void> blockUser(int userId) async {
     try {
       final token = await getToken();
       final url =
-          Uri.parse('http://10.0.2.2:8080/admin/users/block?id=$userId');
+          Uri.parse('http://10.0.2.2:3000/admin/users/block?id=$userId');
       final response = await http.put(
         url,
         headers: {'Authorization': 'Bearer $token'},
