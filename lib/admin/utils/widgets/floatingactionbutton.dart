@@ -16,7 +16,7 @@ class floatingactionbuttonadding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.deepPurple,
       onPressed: () {
         showDialog(
           context: context,

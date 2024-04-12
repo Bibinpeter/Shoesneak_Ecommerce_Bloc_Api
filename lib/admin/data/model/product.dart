@@ -1,17 +1,11 @@
- 
-
-import 'dart:io';
-
 class Product {
   final int id;
   final int categoryId;
   final String description;
   final String name;
-  final int price;
-  final String size;
+  final double price;
+  final int size;
   final int stock;
-   final File? image;
-
 
   Product({
     required this.id,
@@ -21,20 +15,29 @@ class Product {
     required this.price,
     required this.size,
     required this.stock,
-    this.image,
-     
+      required String category,
   });
-}
 
+  Map<String, dynamic> toJson() {
+    return {
+      "id":id,
+      "category_id": categoryId,
+      "description": description,
+      "name": name,
+      "price": price,
+      "size": size,
+      "stock": stock,
+    };
+  }
+}
 class ProductFromApi {
   final int id; 
-  final String categoryId;
+  final int categoryId;
   final String name;
   final String size;
   final int stock;
   final double price;
-  final List<String> image;
-
+  
   ProductFromApi({
     required this.id,
     required this.categoryId,
@@ -42,16 +45,21 @@ class ProductFromApi {
     required this.size,
     required this.stock,
     required this.price,
-    required this.image,
+   
   });
 
-  factory ProductFromApi.fromJson(Map<String, dynamic> json) => ProductFromApi(
-        id: json['id'],
-        categoryId: json['category_id'] as String,
-        name: json['product_name'] as String,
-        size: json['size'] as String,
-        stock: json['stock'] as int,
-        price: json['price'].toDouble(), // Assuming price is a double
-        image: List<String>.from(json['image']),
-      );
+ factory ProductFromApi.fromJson(Map<String, dynamic> json) {
+  return ProductFromApi(
+    id: json['id'] as int, // Assuming 'id' is an integer
+    categoryId: json['category_id'] as int, // Assuming 'category_id' is an integer
+    name: json['product_name'] as String, // Assuming 'product_name' is a string
+    size: json['size'] as String, // Assuming 'size' is a string
+    stock: json['stock'] as int, // Assuming 'stock' is an integer
+    price: json['price'] != null ? json['price'].toDouble() : 0.0, // Assuming 'price' is nullable and may be missing
+    // image: List<String>.from(json['image']), // Uncomment if 'image' is a list of strings
+  );
+}
+
+  toJson() {}
+
 }

@@ -15,10 +15,5 @@ final class ProductLoaded extends ProductState {
 
 final class ProductPosted extends ProductState {}
 
-final class ImagePicked extends ProductState {
-  final File imageFile;
-
-  ImagePicked({required this.imageFile});
-}
 
 final class ProductError extends ProductState {}

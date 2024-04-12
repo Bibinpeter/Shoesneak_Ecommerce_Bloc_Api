@@ -24,14 +24,14 @@ class AddCategoryscrn extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.0),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                   color:
-                      const Color.fromARGB(255, 0, 255, 229).withOpacity(0.5),
+                      Color.fromARGB(255, 0, 255, 255),
                   spreadRadius: 2,
                 ),
               ],
-              color: const Color.fromARGB(255, 69, 159, 204)),
+              color: const Color.fromARGB(255, 38, 164, 226)),
           child: ListTile(
             title: Text(
               category['category'],

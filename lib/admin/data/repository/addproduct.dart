@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:shoesneak/admin/data/model/product.dart';
@@ -7,77 +7,30 @@ import 'package:shoesneak/admin/utils/functions/functions.dart';
 class ProductService {
   final Dio dio = Dio();
 
-  Future<Response<dynamic>> addProduct(Product product) async {
-    final token = await getToken();
-    dio.options.headers['Authorization'] = 'Bearer $token';
+Future<Response<dynamic>> addProduct(Product product) async {
+  final token = await getToken();
+  dio.options.headers['Authorization'] = 'Bearer $token';
 
-    try {
-      // Create FormData and add product details
-      FormData formData = FormData.fromMap({
-        "category_id": product.categoryId,
-        "description": product.description,
-        "name": product.name,
-        "price": product.price,
-        "size": product.size,
-        "stock": product.stock,
-      });
+  try {
+    // Convert product object to JSON
+    String productJson = jsonEncode(product.toJson());
 
-      // Check if product image is not null and add it to FormData
-      if (product.image != null) {
-        formData.files.add(MapEntry(
-          'files',
-          await MultipartFile.fromFile(
-            product.image!.path,
-            filename: 'image.jpg',
-          ),
-        ));
-      }
+    // Make POST request to add product
+    final response = await dio.post(
+      'http://10.0.2.2:3000/admin/products',
+      data: productJson,
+      options: Options(
+        contentType: Headers.jsonContentType,
+      ),
+    );
 
-      // Make POST request to add product
-      final response = await dio.post(
-        'http://10.0.2.2:3000/admin/products',
-        data: formData,
-        options: Options(
-          contentType: Headers.formUrlEncodedContentType,
-        ),
-      );
-
-      return response;
-    // ignore: deprecated_member_use
-    } on DioError catch (error) {
-      throw Exception('Error adding product: ${error.message}');
-    }
+    return response;
+  } on DioError catch (error) {
+    throw Exception('Error adding product: ${error.message}');
   }
+}
 
-  Future<Response<dynamic>> uploadImage(File imageFile) async {
-    final token = await getToken();
-    dio.options.headers['Authorization'] = 'Bearer $token';
-
-    try {
-      // Create FormData and add image file
-      FormData formData = FormData.fromMap({
-        'files': await MultipartFile.fromFile(
-          imageFile.path,
-          filename: 'image.jpg',
-        ),
-      });
-
-      // Make POST request to upload image
-      final response = await dio.post(
-        'http://10.0.2.2:3000/admin/upload-image',
-        data: formData,
-        options: Options(
-          contentType: Headers.formUrlEncodedContentType,
-        ),
-      );
-
-      return response;
-    // ignore: deprecated_member_use
-    } on DioError catch (error) {
-      throw Exception('Error uploading image: ${error.message}');
-    }
-  }
-
+   
 
    Future<List<ProductFromApi>> getProducts() async {
     try {

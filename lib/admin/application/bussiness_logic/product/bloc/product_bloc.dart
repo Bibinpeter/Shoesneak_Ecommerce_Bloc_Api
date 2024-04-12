@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 import 'package:shoesneak/admin/data/model/product.dart';
 import 'package:shoesneak/admin/data/repository/addproduct.dart';
@@ -28,23 +27,14 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       }
     });
 
-    on<PickImage>(
-      (event, emit) async {
-        final imagePicker = ImagePicker();
-        final pickedImage =
-            await imagePicker.pickImage(source: ImageSource.gallery);
-        if (pickedImage != null) {
-          emit(ImagePicked(imageFile: File(pickedImage.path)));
-        }
-      },
-    );
+   
     on<FetchProducts>((event, emit) async {
       print('the length of productlist is ');
       emit(ProductLoading());
       try {
         final productslist = await productservice.getProducts();
         print('the length of productlist from is ${productslist}');
-        emit(ProductLoaded(products: productslist));
+        emit(ProductLoaded(products:productslist));
         print('emitted product loaded');
       } catch (e) {
         emit(ProductError());

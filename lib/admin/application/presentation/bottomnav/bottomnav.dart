@@ -58,7 +58,7 @@ class BottomNavBar extends StatelessWidget {
               },
               iconSize: 30,
               activeColor: Colors.black,
-             inactiveColor: const Color.fromARGB(255, 144, 115, 224),
+             inactiveColor: Colors.deepPurple,
               selectedIndex: currentIndex,
               barItems: [
                 BarItem(
