@@ -28,17 +28,18 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     });
 
    
-    on<FetchProducts>((event, emit) async {
-      print('the length of productlist is ');
-      emit(ProductLoading());
-      try {
-        final productslist = await productservice.getProducts();
-        print('the length of productlist from is ${productslist}');
-        emit(ProductLoaded(products:productslist));
-        print('emitted product loaded');
-      } catch (e) {
-        emit(ProductError());
-      }
-    });
+   on<FetchProducts>((event, emit) async {
+  print('Fetching products...');
+  emit(ProductLoading()); // Emit loading state before fetching
+  try {
+    final productsList = await productservice.getProducts(); // Fetch products from service
+    print('Fetched products: $productsList');
+    emit(ProductLoaded(products: productsList)); // Emit loaded state with products
+    print('Emitted product loaded');
+  } catch (e) {
+    print('Error fetching products: $e');
+    emit(ProductError()); // Emit error state if fetching fails
+  }
+});
   }
 }

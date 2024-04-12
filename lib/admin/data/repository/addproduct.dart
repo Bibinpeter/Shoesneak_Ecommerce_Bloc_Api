@@ -35,27 +35,31 @@ Future<Response<dynamic>> addProduct(Product product) async {
    Future<List<ProductFromApi>> getProducts() async {
     try {
       final dio = Dio();
+      final token = await getToken();
+      dio.options.headers['Authorization'] = 'Bearer $token';
+
       final response = await dio.get('http://10.0.2.2:3000/admin/products');
 
       if (response.statusCode == 200) {
-        final responseData = response.data as Map<String, dynamic>;
-        if (responseData['error'] == null) {
-          final productList = responseData['data'] as List<dynamic>;
-          return productList
-              .map((productData) => ProductFromApi.fromJson(productData))
-              .toList();
-        } else {
-          throw Exception('API error: ${responseData['error']}');
+        print("Fetching products...");
+
+        final responseData = response.data;
+        List<dynamic> productMapList = responseData['data'];
+        print('the length is ${productMapList.length}');
+        List<ProductFromApi> productList = [];
+
+        for (var productMap in productMapList) {
+          final product = ProductFromApi.fromJson(productMap);
+          productList.add(product);
         }
+print('the length is ${productList.length}');
+        return productList;
       } else {
-        throw Exception(
-            'API request failed with status code: ${response.statusCode}');
+        throw Exception('API error: ${response.data['error']}');
       }
     } on DioException catch (error) {
-      throw Exception('Error fetching products: ${error.message}');
+      throw Exception('Dio error fetching products: ${error.message}');
     } catch (error) {
-      throw Exception('Unexpected error: $error');
+      throw Exception('Unexpected error fetching products: $error');
     }
-  }
-
-}
+  }}
