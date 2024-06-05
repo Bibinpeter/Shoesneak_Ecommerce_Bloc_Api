@@ -41,7 +41,7 @@ class TextFormRegister extends StatelessWidget {
             fontSize: 16,  
           ),
           prefixIcon: prefixIcon != null
-              ? Icon(prefixIcon, color: Colors.white,size: 20,)
+              ? Icon(prefixIcon, color: Colors.grey,size: 20,)
               : null,
         ),
         validator: (value) {
